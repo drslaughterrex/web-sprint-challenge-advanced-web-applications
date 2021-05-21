@@ -1,13 +1,41 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import BubblePage from "./BubblePage";
+import { fetchColors as fakeFetchColors } from "./fetchColors";
+
+jest.mock("./fetchColors");
+
+const fakeColors = [
+	{
+		color: "purple",
+		code: {
+			hex: "#6A33FF",
+		},
+		id: 1,
+	},
+	{
+		color: "blue",
+		code: {
+			hex: "#0000FF",
+		},
+		id: 2,
+	},
+	{
+		color: "green",
+		code: {
+			hex: "#2CB402",
+		},
+		id: 3,
+	},
+];
 
 test("Renders BubblePage without errors", () => {
-  // Finish this test
+	render(<BubblePage />);
 });
 
-test("Fetches data and renders the bubbles on mounting", () => {
-  // Finish this test
+test("Fetches data and renders the bubbles on mounting", async () => {
+	render(<BubblePage />);
+	fakeFetchColors.mockResolvedValueOnce(fakeColors);
 });
 
 //Task List
